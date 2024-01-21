@@ -2,6 +2,7 @@ package com.in28minutes.rest.webservices.restfullwebservices.controller;
 
 import com.in28minutes.rest.webservices.restfullwebservices.DAO.UserDaoServices;
 import com.in28minutes.rest.webservices.restfullwebservices.entities.User;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,11 @@ public class UserResource {
    //@POST /users
 
     @PostMapping("/users")
-    public void createUser(@RequestBody User user){
+    public ResponseEntity<User> createUser(@RequestBody User user){
         services.save(user);
+
+
+       return ResponseEntity.created(null).build();
     }
+
 }
