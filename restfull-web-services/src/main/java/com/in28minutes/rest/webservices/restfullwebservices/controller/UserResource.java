@@ -2,6 +2,7 @@ package com.in28minutes.rest.webservices.restfullwebservices.controller;
 
 import com.in28minutes.rest.webservices.restfullwebservices.DAO.UserDaoServices;
 import com.in28minutes.rest.webservices.restfullwebservices.entities.User;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -35,7 +36,7 @@ public class UserResource {
    //@POST /users
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user){
        User savedUser= services.save(user);
 
        //With the next code you can create a URI to see in postman the location of the new user created.
@@ -46,6 +47,7 @@ public class UserResource {
                 .toUri();
        return ResponseEntity.created(location).build();
     }
+
     @DeleteMapping("users/{id}")
     public void deleteById(@PathVariable Integer id){
         services.deleteById(id);
