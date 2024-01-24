@@ -1,17 +1,36 @@
 package com.in28minutes.rest.webservices.restfullwebservices.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.List;
 
+@Entity(name="user_details")
 public class User {
+    @Id
+    @GeneratedValue
     private Integer id;
     @Size(min=3, message = "Name should be al least 3 characters")
+   // @JsonProperty("user_name") //REST API result change the name for user_name
     private String name;
 
     @Past(message = "BirthDate should be in the past")
+   // @JsonProperty("birth_date")
     private LocalDate birthDate;
+
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Post> posts;
+
+    protected User() {
+    }
 
     public User(Integer id, String name, LocalDate birthDate) {
         this.id = id;
@@ -41,6 +60,14 @@ public class User {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     @Override
