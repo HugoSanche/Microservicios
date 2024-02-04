@@ -83,8 +83,4 @@ public class CurrencyConversion {
     public void setEnvironment(String environment) {
         this.environment = environment;
     }
-
-
-
-
 }
