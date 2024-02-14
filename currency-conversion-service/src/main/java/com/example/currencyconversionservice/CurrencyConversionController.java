@@ -21,8 +21,8 @@ public class CurrencyConversionController {
             @PathVariable String from,
             @PathVariable String to,
             @PathVariable BigDecimal quantity
-    ) {
-
+    ) 
+    {
         HashMap<String, String> uriVariables = new HashMap<>();
         uriVariables.put("from",from);
         uriVariables.put("to",to);
@@ -38,8 +38,8 @@ public class CurrencyConversionController {
                 currencyConversion.getConversionMultiple(),
                 quantity.multiply(currencyConversion.getConversionMultiple()),
                 currencyConversion.getEnvironment()+ " " + "rest template");
-
     }
+    
 
     @GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConversion calculateCurrencyConversionFeign(
