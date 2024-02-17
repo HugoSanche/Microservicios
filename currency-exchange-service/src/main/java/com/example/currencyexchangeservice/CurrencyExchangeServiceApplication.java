@@ -9,3 +9,6 @@ public class CurrencyExchangeServiceApplication {
 		SpringApplication.run(CurrencyExchangeServiceApplication.class, args);
 	}
 }
+
+
+
